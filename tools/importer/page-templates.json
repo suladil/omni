@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "projectType": "xwalk"
+  },
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.omnihotels.com/"
+      ],
+      "description": "Omni Hotels homepage with hero, booking widget, property showcases, loyalty program, and promotional content",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            ".video-hero-slider-content-wrapper"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            ".horizontal-accordion"
+          ]
+        },
+        {
+          "name": "carousel",
+          "instances": [
+            "#featured-destinations-slider",
+            "#distinctively-omni-slider"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero",
+          "name": "Hero Section",
+          "selector": ".plp-hero-wrapper",
+          "style": "dark",
+          "blocks": [
+            "hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome Section",
+          "selector": "[data-component='loyalty-signup']",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".digex-loyalty-signup-header h2",
+            ".digex-loyalty-signup-header p"
+          ]
+        },
+        {
+          "id": "special-offers",
+          "name": "Special Offers Section",
+          "selector": ".plp-offers-wrapper",
+          "style": null,
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": [
+            ".plp-offers-heading-container h2",
+            ".plp-offers-heading-container p"
+          ]
+        },
+        {
+          "id": "featured-destinations",
+          "name": "Featured Destinations Section",
+          "selector": ".widget-wrapper--featured-destinations-slider",
+          "style": "light",
+          "blocks": [
+            "carousel"
+          ],
+          "defaultContent": [
+            ".widget-container-heading-container h2",
+            ".widget-container-heading-container a",
+            ".widget-container-heading-container p"
+          ]
+        },
+        {
+          "id": "enriching-experiences",
+          "name": "Enriching Experiences Section",
+          "selector": ".widget-wrapper--distinctively-omni-slider",
+          "style": null,
+          "blocks": [
+            "carousel"
+          ],
+          "defaultContent": [
+            ".widget-container-heading-container h2",
+            ".widget-container-heading-container p"
+          ]
+        }
+      ]
+    }
+  ]
+}

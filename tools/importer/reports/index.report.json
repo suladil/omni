@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.omnihotels.com/",
+  "path": "index",
+  "timestamp": "2026-05-04T23:57:35.267Z",
+  "title": "Omni Hotels & Resorts | Book Your Stay",
+  "template": "homepage",
+  "blocks": [
+    "hero",
+    "cards",
+    "carousel",
+    "carousel"
+  ]
+}

@@ -32,6 +32,30 @@ function toEdsPath(ref) {
 }
 
 /**
+ * True when rendering inside the AEM author / Universal Editor, where the
+ * json2html overlay does not exist (the editor previews from the author host).
+ * @returns {boolean}
+ */
+function isAuthorEnvironment() {
+  return window.location.hostname.includes('.adobeaemcloud.com');
+}
+
+/**
+ * Renders an author-only placeholder. The overlay-rendered fragment only
+ * exists on the EDS delivery tier, so in the editor we show a label instead.
+ * @param {Element} block
+ * @param {string} path the mapped EDS fragment path
+ */
+function renderPlaceholder(block, path) {
+  const name = path.split('/').filter(Boolean).pop() || path;
+  const ph = document.createElement('div');
+  ph.className = 'content-fragment-placeholder';
+  ph.innerHTML = `<p><strong>Content Fragment:</strong> ${name}</p>`
+    + '<p>Renders on the published site.</p>';
+  block.append(ph);
+}
+
+/**
  * @param {Element} block
  */
 export default async function decorate(block) {
@@ -41,6 +65,11 @@ export default async function decorate(block) {
 
   block.textContent = '';
   if (!path || !path.startsWith('/')) return;
+
+  if (isAuthorEnvironment()) {
+    renderPlaceholder(block, path);
+    return;
+  }
 
   const resp = await fetch(`${path}.plain.html`);
   if (!resp.ok) return;

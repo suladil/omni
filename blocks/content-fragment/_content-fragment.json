@@ -23,7 +23,8 @@
         {
           "component": "aem-content",
           "name": "reference",
-          "label": "Content Fragment"
+          "label": "Content Fragment",
+          "rootPath": "/content/dam/wknd-universal"
         }
       ]
     }

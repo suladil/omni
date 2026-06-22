@@ -45,12 +45,23 @@ export default async function decorate(block) {
   const resp = await fetch(`${path}.plain.html`);
   if (!resp.ok) return;
 
+  const tmp = document.createElement('div');
+  tmp.innerHTML = await resp.text();
+
+  // The overlay's optimized images use paths relative to the fragment (./media_*).
+  // Rebase them against the fragment path so they resolve on the host page.
+  const rebase = (tag, attr) => {
+    tmp.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
+      el[attr] = new URL(el.getAttribute(attr), new URL(path, window.location)).href;
+    });
+  };
+  rebase('img', 'src');
+  rebase('source', 'srcset');
+
   // The overlay returns the rendered fragment wrapped in its own
   // .content-fragment div. Lift the inner content into this block (which is
   // already .content-fragment) so styling applies and no nested block is
   // re-decorated.
-  const tmp = document.createElement('div');
-  tmp.innerHTML = await resp.text();
   const rendered = tmp.querySelector('.content-fragment') || tmp;
   block.append(...rendered.childNodes);
 }

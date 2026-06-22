@@ -21,10 +21,13 @@
       "id": "content-fragment",
       "fields": [
         {
-          "component": "aem-content",
+          "component": "aem-content-fragment",
           "name": "reference",
           "label": "Content Fragment",
-          "rootPath": "/content/dam/wknd-universal"
+          "valueType": "string",
+          "validation": {
+            "rootPath": "/content/dam/wknd-universal"
+          }
         }
       ]
     }
